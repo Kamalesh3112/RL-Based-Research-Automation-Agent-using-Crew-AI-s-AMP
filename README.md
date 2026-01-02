@@ -56,3 +56,7 @@ For support, questions, or feedback regarding the AdvancedAiEnhancedResearchAuto
 - [Chat with our docs](https://chatg.pt/DWjSBZn)
 
 Let's create wonders together with the power and simplicity of crewAI.
+
+Multi-agentic chat interface endpoint serving at: https://tinyurl.com/kamalesh-crewai-v2
+
+Note: Note that the above URI endpoint might not work due to limitations in Crew AI Advanced subscription.    👍
