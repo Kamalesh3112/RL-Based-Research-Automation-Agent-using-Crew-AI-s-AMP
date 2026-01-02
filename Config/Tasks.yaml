@@ -1,0 +1,91 @@
+---
+strategic_research_planning:
+  description: Pre-analyze {research_topic} with focus on {research_focus} to create
+    an intelligent research strategy. Break down the topic into key research dimensions,
+    identify high-value sources, create targeted search queries, and establish research
+    priorities for the {timeframe} timeframe. This strategic foundation will guide
+    all subsequent research activities for maximum efficiency.
+  expected_output: 'A comprehensive research strategy document containing: 1) Topic
+    breakdown into key research dimensions, 2) Prioritized list of research objectives,
+    3) Targeted search strategies and keywords, 4) Recommended high-value sources
+    and databases, 5) Research timeline and priority matrix, 6) Success criteria for
+    research completion'
+  agent: research_coordinator
+conduct_targeted_research:
+  description: Perform comprehensive web research on {research_topic} using multiple
+    search strategies and sources. Focus on {research_focus} and gather current information
+    from the past {timeframe} years. Include academic papers, industry reports, news
+    articles, and credible web sources. Verify source credibility and ensure comprehensive
+    coverage of the topic.
+  expected_output: 'A comprehensive research compilation containing: 1) Detailed findings
+    from web searches, 2) Relevant academic papers and citations, 3) Industry reports
+    and market data, 4) Recent news and developments, 5) Source credibility assessments,
+    all organized by subtopic with full citations and URLs'
+  agent: research_specialist
+  context:
+  - strategic_research_planning
+intelligent_fact_verification:
+  description: Cross-validate all research findings from the Research Specialist using
+    advanced AI analysis and multiple verification methods. Identify potential inaccuracies,
+    bias, contradictions, or missing context. Verify claims against primary sources
+    and flag any information requiring additional verification for {research_topic}.
+  expected_output: 'A fact verification report containing: 1) Validated findings with
+    confidence scores, 2) Flagged inaccuracies or inconsistencies, 3) Source credibility
+    assessment, 4) Bias analysis and mitigation suggestions, 5) Recommendations for
+    additional verification, 6) Quality assurance summary with overall accuracy rating'
+  agent: fact_verification_specialist
+  context:
+  - conduct_targeted_research
+analyze_and_synthesize_findings:
+  description: Analyze the research compilation from the Research Specialist and synthesize
+    key findings for {research_topic}. Identify patterns, trends, contradictions,
+    and gaps in the research. Create thematic categorizations, highlight the most
+    significant insights, and prepare structured summaries that will inform the final
+    report.
+  expected_output: 'A structured analysis document containing: 1) Key trends and patterns
+    identified, 2) Major findings categorized by theme, 3) Contradictions or gaps
+    in the research, 4) Statistical summaries and data points, 5) Priority insights
+    ranked by importance, 6) Recommendations for report focus areas'
+  agent: data_analyst
+  context:
+  - conduct_targeted_research
+  - intelligent_fact_verification
+generate_structured_report:
+  description: Create a professional, comprehensive report on {research_topic} using
+    the analyzed findings from the Data Analyst. Structure the report with clear sections
+    including executive summary, methodology, key findings, analysis, conclusions,
+    and recommendations. Use Microsoft Word tool to create the document and upload
+    to OneDrive. Provide the shareable link in your response.
+  expected_output: 'A professionally formatted report document uploaded to OneDrive
+    containing: 1) Executive Summary with key highlights, 2) Research Methodology,
+    3) Key Findings organized by theme, 4) Detailed Analysis, 5) Conclusions and Recommendations,
+    6) References. Response must include the OneDrive shareable link for email distribution.'
+  agent: report_writer
+  context:
+  - analyze_and_synthesize_findings
+advanced_content_optimization:
+  description: Take the structured report from the Report Writer and enhance it using
+    advanced content optimization techniques. Improve readability, structure, flow,
+    and impact while maintaining professional standards. Ensure the report maximizes
+    reader engagement and decision-making value for {research_topic}.
+  expected_output: 'An optimized report enhancement summary containing: 1) Content
+    optimization recommendations implemented, 2) Readability improvements made, 3)
+    Structure and flow enhancements, 4) Executive summary refinements, 5) Visual presentation
+    suggestions, 6) Final quality assessment with improvement metrics'
+  agent: content_optimizer
+  context:
+  - generate_structured_report
+email_report_distribution:
+  description: Send the completed research report to {recipient_email}. Extract the
+    OneDrive shareable link from the Report Writer's output and include it in a professional
+    email. The email should contain a brief executive summary and clear instructions
+    on how to access the full report.
+  expected_output: 'A professional email sent to {recipient_email} containing: 1)
+    Subject line referencing the {research_topic} research report, 2) Brief executive
+    summary in email body, 3) OneDrive shareable link to the full report, 4) Instructions
+    for accessing the document, 5) Professional closing. Confirmation message showing
+    the email was sent successfully.'
+  agent: email_distribution_specialist
+  context:
+  - generate_structured_report
+  - advanced_content_optimization
